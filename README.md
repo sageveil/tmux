@@ -11,9 +11,13 @@
 
 sageveil’s tmux port renders a status line that matches the palette used across the rest of the ecosystem. It ships as a standalone tmux script, so you can source it from any existing `tmux.conf` without bringing in extra plugins.
 
-## Build from the monorepo
+## Get the status line
 
-All sageveil ports will be distributed in their dedicated repos (comming soon). Until then they must be built from source.
+### Prebuilt releases
+
+Download the latest ready-to-use script from <https://github.com/sageveil/tmux>. Releases ship `sageveil.tmux` plus matching checksums so you can drop the file straight into your tmux config.
+
+### Build from the monorepo
 
 1. Install dependencies once: `pnpm install`
 2. Render the theme: `pnpm nx run tmux:generate`
@@ -21,13 +25,9 @@ All sageveil ports will be distributed in their dedicated repos (comming soon). 
 
 ## Apply sageveil
 
-### Prebuilt artifacts (coming soon)
+### Load the script
 
-Links to published releases will be added once the standalone tmux repository goes live.
-
-### Build locally
-
-1. Copy or symlink `sageveil.tmux` into your tmux config directory (for example `~/.config/tmux/sageveil.tmux`).
+1. Copy or symlink the `sageveil.tmux` file you downloaded (from a release or a local build) into your tmux config directory (for example `~/.config/tmux/sageveil.tmux`).
 2. Source it from your main config:
 
    ```tmux
