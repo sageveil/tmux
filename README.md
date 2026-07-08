@@ -9,7 +9,9 @@
 
 ## Overview
 
-sageveil’s tmux port renders a status line that matches the palette used across the rest of the ecosystem. It ships as a standalone tmux script, so you can source it from any existing `tmux.conf` without bringing in extra plugins.
+sageveil’s tmux port renders a calm status line with the same soft glyph-forward vibe as the Starship port. It ships as a standalone tmux script, so you can source it from any existing `tmux.conf` without bringing in extra plugins.
+
+![Sageveil tmux status line](https://raw.githubusercontent.com/sageveil/sageveil/refs/heads/main/packages/ports/tmux/assets/tmux.png)
 
 ## Get the status line
 
@@ -55,8 +57,8 @@ All options are standard tmux global options. Set them **before** you source `sa
 | `@sv_show_session_count` | `""` (off) | Displays the total number of server sessions. |
 | `@sv_show_user` | `""` (off) | Set to `on` to show the current UNIX user on the right. |
 | `@sv_show_host` | `""` (off) | Set to `on` to show the hostname on the right. |
-| `@sv_show_date_time` | `""` (off) | Set to `on` to render the clock segment. |
-| `@sv_show_directory` | `""` (off) | Set to `on` to display the active pane's working directory. |
+| `@sv_show_date_time` | `on` | Render the clock segment. Set to `""` to hide it. |
+| `@sv_show_directory` | `on` | Display the active pane's working directory. Set to `""` to hide it. |
 | `@sv_directory_as_window_name` | `""` (off) | Set to `on` to use the active pane directory as the window title. |
 | `@sv_only_windows` | `""` (off) | Set to `on` to hide the left/right status bars and show only the window list. |
 

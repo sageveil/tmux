@@ -73,9 +73,10 @@ main() {
     local command_queue=()
 
     queue_global_option "status" "on"
-    queue_global_option status-style "fg=$sageveil_bgreen,bg=$sageveil_bg"
+    queue_global_option status-style "fg=$sageveil_muted_fg,bg=$sageveil_bg"
     queue_global_option status-left-length "200"
     queue_global_option status-right-length "200"
+    queue_global_option status-justify "left"
 
     queue_global_option message-style "fg=$sageveil_fg,bg=$sageveil_overlay"
     queue_global_option message-command-style "fg=$sageveil_surface,bg=$sageveil_bred"
@@ -91,9 +92,9 @@ main() {
     queue_global_option display-panes-active-colour "${sageveil_bblue}"
     queue_global_option display-panes-colour "${sageveil_bmagenta}"
 
-    queue_window_option window-status-style "fg=${sageveil_blue},bg=${sageveil_bg}"
-    queue_window_option window-status-activity-style "fg=${sageveil_surface},bg=${sageveil_bcyan}"
-    queue_window_option window-status-current-style "fg=${sageveil_byellow},bg=${sageveil_bg}"
+    queue_window_option window-status-style "fg=${sageveil_dim},bg=${sageveil_bg}"
+    queue_window_option window-status-activity-style "fg=${sageveil_magenta},bg=${sageveil_bg}"
+    queue_window_option window-status-current-style "fg=${sageveil_green},bg=${sageveil_bg}"
 
     # Shows tmux session name
     local show_session
@@ -112,7 +113,7 @@ main() {
 
     # Date and time
     local show_date_time
-    show_date_time="$(read_tmux_setting "@sv_show_date_time" "")"
+    show_date_time="$(read_tmux_setting "@sv_show_date_time" "on")"
     readonly show_date_time
 
     # Date and time format
@@ -122,7 +123,7 @@ main() {
 
     # Shows truncated current working directory
     local show_directory
-    show_directory="$(read_tmux_setting "@sv_show_directory" "")"
+    show_directory="$(read_tmux_setting "@sv_show_directory" "on")"
 
     # Show icon then prefix is active
     local show_prefix_indicator
@@ -221,28 +222,28 @@ main() {
     left_separator="$(read_tmux_setting "@sv_left_separator" "$default_separator")"
 
     local session_segment
-    readonly session_segment=" #[fg=$sageveil_magenta]$current_session_icon #[fg=$sageveil_magenta]#S "
+    readonly session_segment="#[fg=$sageveil_bg,bg=$sageveil_magenta]  $current_session_icon  #[fg=$sageveil_magenta,bg=$sageveil_bg] #[fg=$sageveil_green,bg=$sageveil_bg]#S "
 
     local session_count_segment
-    readonly session_count_segment=" #[fg=$sageveil_cyan]$session_count_icon #[fg=$sageveil_cyan]#{server_sessions}$default_separator"
+    readonly session_count_segment="#[fg=$sageveil_blue]$session_count_icon #{server_sessions}$default_separator"
 
     local user_segment
-    readonly user_segment="#[fg=$sageveil_cyan]#(whoami)#[fg=$sageveil_blue]$right_separator#[fg=$sageveil_blue]$username_icon"
+    readonly user_segment="#[fg=$sageveil_blue]$username_icon#[fg=$sageveil_border]$right_separator#[fg=$sageveil_magenta]#(whoami)"
 
     local host_segment
-    readonly host_segment="$default_separator#[fg=$sageveil_cyan]#H#[fg=$sageveil_blue]$right_separator#[fg=$sageveil_blue]$hostname_icon"
+    readonly host_segment="$default_separator#[fg=$sageveil_magenta]$hostname_icon#[fg=$sageveil_border]$right_separator#[fg=$sageveil_blue]#H"
 
     local date_time_segment
-    readonly date_time_segment=" #[fg=$sageveil_cyan]$date_time_format#[fg=$sageveil_blue]$right_separator#[fg=$sageveil_blue]$date_time_icon "
+    readonly date_time_segment="$default_separator#[fg=$sageveil_cyan]$date_time_icon#[fg=$sageveil_border]$right_separator#[fg=$sageveil_cyan]$date_time_format"
 
     local directory_segment
-    readonly directory_segment="$default_separator#[fg=$sageveil_dyellow]$current_folder_icon #[fg=$sageveil_dyellow]#{b:pane_current_path} "
+    readonly directory_segment="$default_separator#[fg=$sageveil_magenta]$current_folder_icon#[fg=$sageveil_border]$right_separator#[fg=$sageveil_magenta]#{b:pane_current_path}"
 
     local prefix_indicator_segment
-    readonly prefix_indicator_segment="#{?client_prefix,#[fg=$sageveil_bred]$prefix_icon$default_separator,}"
+    readonly prefix_indicator_segment="#{?client_prefix,#[fg=$sageveil_red]$prefix_icon$default_separator,}"
 
     local zoom_indicator_segment
-    readonly zoom_indicator_segment="#{?window_zoomed_flag,#[fg=$sageveil_bgreen]$zoom_icon$default_separator,}"
+    readonly zoom_indicator_segment="#{?window_zoomed_flag,#[fg=$sageveil_blue]$zoom_icon$default_separator,}"
 
     ### WINDOW STATUS
     local win_sep=":"
@@ -258,8 +259,8 @@ main() {
     fi
 
     # Custom window status that goes between the number and the window name
-    local window_segment_format="#[fg=$sageveil_blue]#I#[fg=$sageveil_blue]$win_sep#[fg=$sageveil_blue]#$win_name"
-    local current_window_segment_format="#I#[fg=$sageveil_byellow]$win_sep#[fg=$sageveil_byellow]#$win_name"
+    local window_segment_format="#[fg=$sageveil_dim]#I#[fg=$sageveil_border]$win_sep#[fg=$sageveil_muted_fg]#$win_name"
+    local current_window_segment_format="#[fg=$sageveil_bgreen]#I#[fg=$sageveil_border]$win_sep#[fg=$sageveil_bgreen]#$win_name"
 
     # Left status segments (order-sensitive)
     local -a left_segments=()
