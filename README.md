@@ -52,6 +52,8 @@ All options are standard tmux global options. Set them **before** you source `sa
 | Option | Default | Description |
 | --- | --- | --- |
 | `@sv_show_session` | `on` | Shows the current session name (`#S`) on the left. |
+| `@sv_show_ssh_indicator` | `on` | Shows `SSH` beside the session name when the tmux server was started from an SSH connection. |
+| `@sv_show_ssh_hostname` | `""` (off) | Replaces the SSH label with `󰌢` and the remote hostname. |
 | `@sv_show_prefix_indicator` | `on` | Adds the prefix icon whenever the tmux prefix is pressed. |
 | `@sv_show_zoom_indicator` | `on` | Highlights zoomed panes (prefix + `z`). |
 | `@sv_show_session_count` | `""` (off) | Displays the total number of server sessions. |

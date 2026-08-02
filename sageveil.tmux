@@ -111,6 +111,16 @@ main() {
     show_host="$(read_tmux_setting "@sv_host" "")"
     readonly show_host
 
+    # Shows SSH when the tmux server was started from an SSH connection
+    local show_ssh_indicator
+    show_ssh_indicator="$(read_tmux_setting "@sv_show_ssh_indicator" "on")"
+    readonly show_ssh_indicator
+
+    # Shows the remote hostname instead of the SSH label
+    local show_ssh_hostname
+    show_ssh_hostname="$(read_tmux_setting "@sv_show_ssh_hostname" "")"
+    readonly show_ssh_hostname
+
     # Date and time
     local show_date_time
     show_date_time="$(read_tmux_setting "@sv_show_date_time" "on")"
@@ -227,6 +237,13 @@ main() {
     local session_count_segment
     readonly session_count_segment="#[fg=$sageveil_blue]$session_count_icon #{server_sessions}$default_separator"
 
+    local ssh_indicator_segment=""
+    if [[ "$show_ssh_indicator" == "on" ]] && tmux show-environment -g SSH_CONNECTION >/dev/null 2>&1; then
+        ssh_indicator_segment="#[fg=$sageveil_cyan]SSH$default_separator"
+        [[ "$show_ssh_hostname" == "on" ]] && ssh_indicator_segment="#[fg=$sageveil_bmagenta]󰌢 #H$default_separator"
+    fi
+    readonly ssh_indicator_segment
+
     local user_segment
     readonly user_segment="#[fg=$sageveil_blue]$username_icon#[fg=$sageveil_border]$right_separator#[fg=$sageveil_magenta]#(whoami)"
 
@@ -280,6 +297,8 @@ main() {
     if [[ "$show_session" = "on" ]]; then
         left_segments+=("$session_segment")
     fi
+
+    [[ -n "$ssh_indicator_segment" ]] && left_segments+=("$ssh_indicator_segment")
 
     if [[ "$show_session_count" == "on" ]]; then
         left_segments+=("$session_count_segment")
