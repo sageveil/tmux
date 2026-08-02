@@ -294,11 +294,11 @@ main() {
         left_segments+=("$status_left_prepend_section")
     fi
 
+    [[ -n "$ssh_indicator_segment" ]] && left_segments+=("$ssh_indicator_segment")
+
     if [[ "$show_session" = "on" ]]; then
         left_segments+=("$session_segment")
     fi
-
-    [[ -n "$ssh_indicator_segment" ]] && left_segments+=("$ssh_indicator_segment")
 
     if [[ "$show_session_count" == "on" ]]; then
         left_segments+=("$session_count_segment")
