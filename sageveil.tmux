@@ -231,8 +231,11 @@ main() {
     local left_separator
     left_separator="$(read_tmux_setting "@sv_left_separator" "$default_separator")"
 
-    local session_segment
-    readonly session_segment="#[fg=$sageveil_bg,bg=$sageveil_magenta]  $current_session_icon  #[fg=$sageveil_magenta,bg=$sageveil_bg] #[fg=$sageveil_green,bg=$sageveil_bg]#S "
+    local session_icon_segment
+    readonly session_icon_segment="#[fg=$sageveil_bg,bg=$sageveil_magenta]  $current_session_icon  #[fg=$sageveil_magenta,bg=$sageveil_bg] "
+
+    local session_name_segment
+    readonly session_name_segment="#[fg=$sageveil_green,bg=$sageveil_bg]#S "
 
     local session_count_segment
     readonly session_count_segment="#[fg=$sageveil_blue]$session_count_icon #{server_sessions}$default_separator"
@@ -294,10 +297,14 @@ main() {
         left_segments+=("$status_left_prepend_section")
     fi
 
+    if [[ "$show_session" = "on" ]]; then
+        left_segments+=("$session_icon_segment")
+    fi
+
     [[ -n "$ssh_indicator_segment" ]] && left_segments+=("$ssh_indicator_segment")
 
     if [[ "$show_session" = "on" ]]; then
-        left_segments+=("$session_segment")
+        left_segments+=("$session_name_segment")
     fi
 
     if [[ "$show_session_count" == "on" ]]; then

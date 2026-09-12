@@ -49,54 +49,54 @@ All options are standard tmux global options. Set them **before** you source `sa
 
 ### Segment toggles
 
-| Option | Default | Description |
-| --- | --- | --- |
-| `@sv_show_session` | `on` | Shows the current session name (`#S`) on the left. |
-| `@sv_show_ssh_indicator` | `on` | Shows `SSH` beside the session name when the tmux server was started from an SSH connection. |
-| `@sv_show_ssh_hostname` | `""` (off) | Replaces the SSH label with `󰌢` and the remote hostname. |
-| `@sv_show_prefix_indicator` | `on` | Adds the prefix icon whenever the tmux prefix is pressed. |
-| `@sv_show_zoom_indicator` | `on` | Highlights zoomed panes (prefix + `z`). |
-| `@sv_show_session_count` | `""` (off) | Displays the total number of server sessions. |
-| `@sv_show_user` | `""` (off) | Set to `on` to show the current UNIX user on the right. |
-| `@sv_show_host` | `""` (off) | Set to `on` to show the hostname on the right. |
-| `@sv_show_date_time` | `on` | Render the clock segment. Set to `""` to hide it. |
-| `@sv_show_directory` | `on` | Display the active pane's working directory. Set to `""` to hide it. |
-| `@sv_directory_as_window_name` | `""` (off) | Set to `on` to use the active pane directory as the window title. |
-| `@sv_only_windows` | `""` (off) | Set to `on` to hide the left/right status bars and show only the window list. |
+| Option                         | Default    | Description                                                                                  |
+| ------------------------------ | ---------- | -------------------------------------------------------------------------------------------- |
+| `@sv_show_session`             | `on`       | Shows the current session name (`#S`) on the left.                                           |
+| `@sv_show_ssh_indicator`       | `on`       | Shows `SSH` beside the session name when the tmux server was started from an SSH connection. |
+| `@sv_show_ssh_hostname`        | `""` (off) | Replaces the SSH label with `󰌢` and the remote hostname.                                     |
+| `@sv_show_prefix_indicator`    | `on`       | Adds the prefix icon whenever the tmux prefix is pressed.                                    |
+| `@sv_show_zoom_indicator`      | `on`       | Highlights zoomed panes (prefix + `z`).                                                      |
+| `@sv_show_session_count`       | `""` (off) | Displays the total number of server sessions.                                                |
+| `@sv_show_user`                | `""` (off) | Set to `on` to show the current UNIX user on the right.                                      |
+| `@sv_show_host`                | `""` (off) | Set to `on` to show the hostname on the right.                                               |
+| `@sv_show_date_time`           | `on`       | Render the clock segment. Set to `""` to hide it.                                            |
+| `@sv_show_directory`           | `on`       | Display the active pane's working directory. Set to `""` to hide it.                         |
+| `@sv_directory_as_window_name` | `""` (off) | Set to `on` to use the active pane directory as the window title.                            |
+| `@sv_only_windows`             | `""` (off) | Set to `on` to hide the left/right status bars and show only the window list.                |
 
 ### Formatting and layout
 
-| Option | Default | Description |
-| --- | --- | --- |
-| `@sv_date_time_format` | `%H:%M %d %b` | Format string fed to the clock segment. |
-| `@sv_window_idx_name_separator` | `·` | Separator between the window index (`#I`) and name (`#W`). |
-| `@sv_window_segments_separator` | double space | Separator placed between each window segment. |
-| `@sv_left_separator` | single space | Glue used to join items in the left status line. |
-| `@sv_right_separator` | single space | Glue used to join items in the right status line. |
+| Option                          | Default       | Description                                                |
+| ------------------------------- | ------------- | ---------------------------------------------------------- |
+| `@sv_date_time_format`          | `%H:%M %d %b` | Format string fed to the clock segment.                    |
+| `@sv_window_idx_name_separator` | `·`           | Separator between the window index (`#I`) and name (`#W`). |
+| `@sv_window_segments_separator` | double space  | Separator placed between each window segment.              |
+| `@sv_left_separator`            | single space  | Glue used to join items in the left status line.           |
+| `@sv_right_separator`           | single space  | Glue used to join items in the right status line.          |
 
 ### Integration hooks
 
-| Option | Default | Description |
-| --- | --- | --- |
-| `@sv_status_left_prepend_section` | `""` | Prepends raw tmux status text to the left side (runs before sageveil segments). |
-| `@sv_status_left_append_section` | `""` | Appends raw tmux status text after the sageveil left segments. |
-| `@sv_status_right_prepend_section` | `""` | Prepends raw tmux status text to the right side. |
-| `@sv_status_right_append_section` | `""` | Appends raw tmux status text after the sageveil right segments. |
+| Option                             | Default | Description                                                                     |
+| ---------------------------------- | ------- | ------------------------------------------------------------------------------- |
+| `@sv_status_left_prepend_section`  | `""`    | Prepends raw tmux status text to the left side (runs before sageveil segments). |
+| `@sv_status_left_append_section`   | `""`    | Appends raw tmux status text after the sageveil left segments.                  |
+| `@sv_status_right_prepend_section` | `""`    | Prepends raw tmux status text to the right side.                                |
+| `@sv_status_right_append_section`  | `""`    | Appends raw tmux status text after the sageveil right segments.                 |
 
 ### Icon glyphs
 
 These defaults assume a Nerd Font. Override any entry if your terminal font maps different glyphs.
 
-| Option | Default glyph | Purpose |
-| --- | --- | --- |
-| `@sv_session_icon` | `󰕰` | Session segment icon. |
-| `@sv_window_count_icon` | `󰕢` | Server session count indicator. |
-| `@sv_username_icon` | `` | Username indicator on the right side. |
-| `@sv_hostname_icon` | `󰒋` | Hostname indicator. |
-| `@sv_date_time_icon` | `󰃰` | Clock segment icon. |
-| `@sv_folder_icon` | `` | Active directory indicator. |
-| `@sv_prefix_icon` | `󰘳` | Prefix active indicator. |
-| `@sv_zoom_icon` | `󰁌` | Zoomed pane indicator. |
+| Option                  | Default glyph | Purpose                               |
+| ----------------------- | ------------- | ------------------------------------- |
+| `@sv_session_icon`      | `󰕰`           | Session segment icon.                 |
+| `@sv_window_count_icon` | `󰕢`           | Server session count indicator.       |
+| `@sv_username_icon`     | ``           | Username indicator on the right side. |
+| `@sv_hostname_icon`     | `󰒋`           | Hostname indicator.                   |
+| `@sv_date_time_icon`    | `󰃰`           | Clock segment icon.                   |
+| `@sv_folder_icon`       | ``           | Active directory indicator.           |
+| `@sv_prefix_icon`       | `󰘳`           | Prefix active indicator.              |
+| `@sv_zoom_icon`         | `󰁌`           | Zoomed pane indicator.                |
 
 ## Development
 
